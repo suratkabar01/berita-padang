@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita Padang - Portal Berita Terkini Kota Padang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan variabel CSS */
+        :root {
+            --primary: #1a5fb4;
+            --secondary: #e6a919;
+            --accent: #26a269;
+            --danger: #c01c28;
+            --light: #f8f9fa;
+            --dark: #2d2d2d;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fa;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #0d4a9c;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-warning {
+            background-color: var(--secondary);
+        }
+        
+        .btn-warning:hover {
+            background-color: #d6940f;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin: 40px 0 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -3px;
+            left: 0;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .top-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-header span i {
+            margin-right: 8px;
+            color: var(--secondary);
+        }
+        
+        .date-time {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .header-ads {
+            background-color: #f0f4f8;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: var(--primary);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        /* Navigation */
+        .main-nav {
+            background-color: var(--primary);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: white;
+            padding: 16px 20px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .nav-links a:hover, .nav-links .active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 20px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after, .nav-links .active::after {
+            width: calc(100% - 40px);
+        }
+        
+        .nav-extra {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav-extra a {
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .nav-extra a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1597176931555-210e2f4b7373?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Breaking News */
+        .breaking-news {
+            background-color: var(--danger);
+            color: white;
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        
+        .breaking-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .breaking-label {
+            background-color: white;
+            color: var(--danger);
+            padding: 6px 15px;
+            border-radius: 4px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        
+        .breaking-text {
+            flex: 1;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        /* Featured News */
+        .featured-news {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .featured-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .featured-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .featured-item.large {
+            grid-column: 1 / -1;
+            display: flex;
+        }
+        
+        .featured-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .featured-item.large .featured-img {
+            width: 50%;
+            height: 300px;
+        }
+        
+        .featured-content {
+            padding: 20px;
+        }
+        
+        .featured-item.large .featured-content {
+            width: 50%;
+        }
+        
+        .news-category {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .featured-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .featured-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        /* Latest News */
+        .latest-news-list {
+            background-color: white;
+            border-radius: 8px;
+            padding: 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .latest-item {
+            display: flex;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+        
+        .latest-item:last-child {
+            border-bottom: none;
+        }
+        
+        .latest-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .latest-img {
+            width: 100px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+        
+        .latest-content h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        
+        .widget-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            color: var(--primary);
+        }
+        
+        .popular-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .popular-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .popular-number {
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .popular-list li:nth-child(1) .popular-number {
+            background-color: var(--danger);
+        }
+        
+        .popular-list li:nth-child(2) .popular-number {
+            background-color: var(--secondary);
+        }
+        
+        .popular-list li:nth-child(3) .popular-number {
+            background-color: var(--accent);
+        }
+        
+        .category-list li {
+            margin-bottom: 12px;
+        }
+        
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        
+        .category-list a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .category-count {
+            background-color: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .category-list a:hover .category-count {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Regional News */
+        .regional-news {
+            margin-bottom: 50px;
+        }
+        
+        .regional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .regional-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .regional-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .regional-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .regional-content {
+            padding: 20px;
+        }
+        
+        .regional-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        /* Video Section */
+        .video-section {
+            background-color: #f0f4f8;
+            padding: 60px 0;
+            margin: 50px 0;
+        }
+        
+        .video-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .main-video {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .video-placeholder {
+            background-color: #333;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .video-item {
+            display: flex;
+            gap: 15px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .video-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .video-thumbnail {
+            width: 120px;
+            height: 80px;
+            background-color: #666;
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links ul li a {
+            color: #bbb;
+            transition: var(--transition);
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+        
+        .contact-info i {
+            color: var(--secondary);
+            margin-top: 4px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-news {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-item.large {
+                flex-direction: column;
+            }
+            
+            .featured-item.large .featured-img,
+            .featured-item.large .featured-content {
+                width: 100%;
+            }
+            
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-ads {
+                display: none;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                box-shadow: var(--shadow);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-extra {
+                display: none;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .breaking-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .top-header .container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .featured-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .regional-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .latest-item {
+                flex-direction: column;
+            }
+            
+            .latest-img {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <span><i class="fas fa-map-marker-alt"></i> Kota Padang, Sumatera Barat</span>
+                <div class="date-time">
+                    <span id="current-date"></span>
+                    <span id="current-time"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <div class="logo-img">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Berita Padang</h1>
+                            <p>Portal Berita Terkini Kota Padang</p>
+                        </div>
+                    </div>
+                    <div class="header-ads">
+                        <i class="fas fa-ad"></i> Iklan: Dapatkan Diskon 30% untuk Pelanggan Baru
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-nav">
+            <div class="container nav-container">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#" class="active">Beranda</a></li>
+                    <li><a href="#">Politik</a></li>
+                    <li><a href="#">Ekonomi</a></li>
+                    <li><a href="#">Sosial</a></li>
+                    <li><a href="#">Budaya</a></li>
+                    <li><a href="#">Olahraga</a></li>
+                    <li><a href="#">Kesehatan</a></li>
+                    <li><a href="#">Pendidikan</a></li>
+                </ul>
+                
+                <div class="nav-extra">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                </div>
+                
+                <div class="mobile-toggle" id="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Berita Terkini dan Terpercaya dari Kota Padang</h1>
+                <p>Dapatkan informasi terupdate seputar perkembangan kota Padang, kebijakan pemerintah, kegiatan masyarakat, budaya Minangkabau, dan berbagai peristiwa penting lainnya.</p>
+                <div class="hero-buttons">
+                    <a href="#berita-utama" class="btn">Baca Berita Hari Ini</a>
+                    <a href="#video" class="btn btn-outline">Tonton Video Berita</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breaking News -->
+    <section class="breaking-news">
+        <div class="container breaking-container">
+            <div class="breaking-label">
+                <i class="fas fa-bolt"></i> BERITA TERKINI
+            </div>
+            <div class="breaking-text">
+                <marquee>Walikota Padang Resmikan Pembangunan Taman Pintar di Koto Tangah • Harga Cabai Rawit di Pasar Raya Padang Turun 20% • Tim Sepakbola Kota Padang Juara Turnamen Regional Sumatera Barat</marquee>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Featured News -->
+                <div class="section-title">
+                    <h2>Berita Utama</h2>
+                </div>
+                
+                <div class="featured-news" id="berita-utama">
+                    <!-- Featured Item Large -->
+                    <div class="featured-item large">
+                        <img src="https://images.unsplash.com/photo-1597176931555-210e2f4b7373?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Walikota Padang menghadiri acara peresmian" class="featured-img">
+                        <div class="featured-content">
+                            <span class="news-category">PEMBANGUNAN</span>
+                            <h3>Walikota Padang Resmikan Jembatan Penyeberangan di Kawasan Padang Barat</h3>
+                            <p>Jembatan penyeberangan orang (JPO) dengan panjang 45 meter diresmikan untuk meningkatkan keamanan pejalan kaki dan mengurangi kemacetan di kawasan Padang Barat. JPO ini dilengkapi dengan lift untuk penyandang disabilitas.</p>
+                            <div class="news-meta">
+                                <span><i class="far fa-clock"></i> 4 jam yang lalu</span>
+                                <span><i class="far fa-eye"></i> 2.1k dilihat</span>
+                                <span><i class="far fa-comment"></i> 45 komentar</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Featured Item 1 -->
+                    <div class="featured-item">
+                        <img src="https://images.unsplash.com/photo-1565689221354-d87f85d4aee2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kegiatan budaya Minangkabau" class="featured-img">
+                        <div class="featured-content">
+                            <span class="news-category" style="background-color: var(--accent);">BUDAYA</span>
+                            <h3>Festival Budaya Minangkabau 2024 Digelar di Taman Budaya Padang</h3>
+                            <p>Rangkaian acara festival budaya akan berlangsung selama seminggu dengan menampilkan berbagai kesenian tradisional Minangkabau dari seluruh Sumatera Barat.</p>
+                            <div class="news-meta">
+                                <span><i class="far fa-clock"></i> 1 hari yang lalu</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Featured Item 2 -->
+                    <div class="featured-item">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pelatihan UMKM" class="featured-img">
+                        <div class="featured-content">
+                            <span class="news-category" style="background-color: var(--secondary);">EKONOMI</span>
+                            <h3>Dinas Perdagangan Padang Gelar Pelatihan Digital Marketing untuk 200 UMKM</h3>
+                            <p>Pelatihan ini bertujuan membantu pelaku usaha mikro, kecil, dan menengah memasarkan produk secara online dengan memanfaatkan platform digital dan media sosial.</p>
+                            <div class="news-meta">
+                                <span><i class="far fa-clock"></i> 2 hari yang lalu</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Regional News -->
+                <div class="section-title">
+                    <h2>Berita Daerah</h2>
+                </div>
+                
+                <div class="regional-news">
+                    <div class="regional-grid">
+                        <div class="regional-card">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pantai Padang">
+                            <div class="regional-content">
+                                <span class="news-category">WISATA</span>
+                                <h3>Kunjungan Wisatawan ke Pantai Padang Meningkat 30% Selama Akhir Pekan</h3>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 3 hari yang lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="regional-card">
+                            <img src="https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sekolah di Padang">
+                            <div class="regional-content">
+                                <span class="news-category" style="background-color: var(--accent);">PENDIDIKAN</span>
+                                <h3>10 Sekolah di Padang Terima Bantuan Laboratorium Komputer dari Pemkot</h3>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 4 hari yang lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="regional-card">
+                            <img src="https://images.unsplash.com/photo-1580741564-93f205f0e50a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kegiatan olahraga">
+                            <div class="regional-content">
+                                <span class="news-category" style="background-color: var(--danger);">OLAHRAGA</span>
+                                <h3>Atlet Renang Padang Raih Medali Emas di Kejuaraan Nasional</h3>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 5 hari yang lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Latest News -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Berita Terbaru</h3>
+                    <div class="latest-news-list">
+                        <div class="latest-item">
+                            <img src="https://images.unsplash.com/photo-1597176931555-210e2f4b7373?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Berita terbaru" class="latest-img">
+                            <div class="latest-content">
+                                <h4>Pemkot Padang Gelar Vaksinasi Gratis di 10 Lokasi</h4>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 2 jam lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="latest-item">
+                            <img src="https://images.unsplash.com/photo-1565689221354-d87f85d4aee2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Berita terbaru" class="latest-img">
+                            <div class="latest-content">
+                                <h4>Festival Kuliner Padang Kembali Digelar Setelah 2 Tahun</h4>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 5 jam lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="latest-item">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Berita terbaru" class="latest-img">
+                            <div class="latest-content">
+                                <h4>Harga Sembako di Pasar Raya Padang Stabil Selama Ramadan</h4>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 7 jam lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="latest-item">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Berita terbaru" class="latest-img">
+                            <div class="latest-content">
+                                <h4>Revitalisasi Taman Siti Nurbaya Akan Rampung Bulan Depan</h4>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 1 hari lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Popular News -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Berita Populer</h3>
+                    <ul class="popular-list">
+                        <li>
+                            <div class="popular-number">1</div>
+                            <div>Proyek Tol Padang-Pekanbaru Capai 60% Pengerjaan</div>
+                        </li>
+                        <li>
+                            <div class="popular-number">2</div>
+                            <div>Rumah Makan Padang Terbaik Versi Tripadvisor 2024</div>
+                        </li>
+                        <li>
+                            <div class="popular-number">3</div>
+                            <div>Penemuan Benda Bersejarah di Situs Kebudayaan Padang</div>
+                        </li>
+                        <li>
+                            <div class="popular-number">4</div>
+                            <div>Kebakaran Pasar Raya Padang, Kerugian Capai Miliaran</div>
+                        </li>
+                        <li>
+                            <div class="popular-number">5</div>
+                            <div>Walikota Padang Terima Penghargaan Kota Toleran</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Categories -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Kategori Berita</h3>
+                    <ul class="category-list">
+                        <li>
+                            <a href="#">
+                                <span>Politik</span>
+                                <span class="category-count">42</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Ekonomi</span>
+                                <span class="category-count">38</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Sosial</span>
+                                <span class="category-count">56</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Budaya</span>
+                                <span class="category-count">29</span>
+                            </a>
+                        </li>
